@@ -54,6 +54,36 @@ public class BasicQueue<X> {
 			front++;
 		}
 		return item;
+	}
+	
+	public boolean contains(X item) {
+		boolean found = false;
 		
+		if(size() == 0) {
+			return found;
+		}
+		
+		for(int x = front; x < end; x++) {
+			if(data[x].equals(item)) {
+				found = true;
+				break;
+			}
+		}
+		
+		return found;
+	}
+	
+	public X access(int position) {
+		if(size() == 0 || position > size()) {
+			throw new IllegalArgumentException("No items in queue or position is greater than size.");
+		}
+		int trueIndex = 0;
+		for(int x = front; x < end; x++) {
+			if(trueIndex == x) {
+				return data[x];
+			}
+			trueIndex++;
+		}
+		throw new IllegalArgumentException("Could not access queue item at position: " + position);
 	}
 }
