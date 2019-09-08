@@ -1,9 +1,9 @@
 package testingApps;
 
-import dataStructures.BasicStack;
+import dataStructures.ListStack;
 
 public class CardStackApp {
-	BasicStack<String> stack = new BasicStack<String>();
+	ListStack<String> stack = new ListStack<String>();
 	
 	public static void main(String[] args) {
 		CardStackApp app = new CardStackApp();
@@ -29,7 +29,7 @@ public class CardStackApp {
 		app.deckSize();
 	}
 	
-	public void stackCards() {		
+	public void stackCards() {
 		//stack the spade suit
 		stack.push("Ace of Spades");
 		stack.push("2 of Spades");
@@ -107,7 +107,7 @@ public class CardStackApp {
 	}
 	
 	public void deckSize() {			
-		System.out.println(stack.size());
+		System.out.println("Our deck size is:"+stack.size());
 	}
 	
 }

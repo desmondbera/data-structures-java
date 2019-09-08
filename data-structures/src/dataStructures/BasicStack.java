@@ -65,7 +65,7 @@ public class BasicStack<X> implements BasicStackInterface<X> {
 				return tempItem;
 			}
 		}
-		throw new IllegalArgumentException("Could not find itme onthe stack: " + item);
+		throw new IllegalArgumentException("Could not find item on the stack: " + item);
 	}
 
 	// Size of our data structure
