@@ -1,6 +1,8 @@
 package dataStructures;
 
-public class BasicStack<X> {
+import dataStructureInterfaces.BasicStackInterface;
+
+public class BasicStack<X> implements BasicStackInterface<X> {
 
 	// Using a primitive data type of array w/ Generic type
 	private X[] data;
@@ -16,6 +18,7 @@ public class BasicStack<X> {
 
 	// Create insert / delete methods (push / pop)
 	// Time complexity: O(1)
+	@Override
 	public void push(X newItem) {
 		// add to underlying array
 		// also uses post-increment
@@ -24,6 +27,7 @@ public class BasicStack<X> {
 
 	// Create contains / access methods (search)
 	// Time complexity: O(n)
+	@Override
 	public X pop() {
 
 		// Handle exception when stack is empty
@@ -37,6 +41,7 @@ public class BasicStack<X> {
 
 	// Search data structure for x-item
 	// Time complexity: O(n)
+	@Override
 	public boolean contains(X item) {
 		boolean found = false;
 
@@ -52,6 +57,7 @@ public class BasicStack<X> {
 
 	// Retrieve x-item
 	// Time complexity: O(n)
+	@Override
 	public X access(X item) {
 		while (stackPointer > 0) {
 			X tempItem = pop();
@@ -66,5 +72,6 @@ public class BasicStack<X> {
 	public int size() {
 		return stackPointer;
 	}
+
 
 }
