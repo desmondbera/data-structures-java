@@ -86,7 +86,7 @@ public class BasicQueue<X> implements BasicQueueInterface<X> {
 		}
 		int trueIndex = 0;
 		for(int x = front; x < end; x++) {
-			if(trueIndex == x) {
+			if(trueIndex == position) {
 				return data[x];
 			}
 			trueIndex++;

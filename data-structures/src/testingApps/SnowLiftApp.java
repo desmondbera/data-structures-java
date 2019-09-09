@@ -1,9 +1,9 @@
 package testingApps;
 
-import dataStructures.BasicQueue;
+import dataStructures.ListQueue;
 
 public class SnowLiftApp {
-	BasicQueue<Gad2Chair> gad2Lift = new BasicQueue<Gad2Chair>();
+	ListQueue<Gad2Chair> gad2Lift = new ListQueue<Gad2Chair>();
 
 	public static void main(String[] args) {
 		SnowLiftApp app = new SnowLiftApp();
