@@ -86,5 +86,4 @@ public class ListQueue<X> implements BasicQueueInterface<X> {
 			return end - front + 1;
 		}
 	}
-
 }
