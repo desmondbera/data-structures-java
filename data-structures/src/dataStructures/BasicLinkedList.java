@@ -11,6 +11,44 @@ public class BasicLinkedList<X> {
 		last = null;
 		nodeCount = 0;
 	}
+	
+	public X removeAt(int position) {
+		if(first == null) {
+			throw new IllegalStateException("The LinkedList is empthy and there are no items to remove.");
+		}
+		
+		Node currentNode = first;
+		Node prevNode = first;
+		
+		for(int x = 1; x < position && currentNode != null; x++) {
+			prevNode = currentNode;
+			currentNode = currentNode.getNextNode();
+		}
+		
+		X nodeItem = currentNode.getNodeItem();
+		prevNode.setNextNode(currentNode.getNextNode());
+		
+		nodeCount--;
+		return nodeItem;
+	}
+	
+	public void insert(X item, int position) {
+		if(size() < position) {
+			throw new IllegalStateException("The linked list is smaller than the position you are looking for.");
+		}
+		
+		Node currentNode = first;
+		
+		for(int x = 1; x < position && currentNode != null; x++) {
+			currentNode = currentNode.getNextNode();
+		}
+		
+		Node newNode = new Node(item);
+		Node nextNode = currentNode.getNextNode();
+		currentNode.setNextNode(newNode);
+		newNode.setNextNode(nextNode);
+		nodeCount++;
+	}
 
 	public void add(X item) {
 		// This is the condition when we are adding something for the first time
