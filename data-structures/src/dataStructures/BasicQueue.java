@@ -1,6 +1,8 @@
 package dataStructures;
 
-public class BasicQueue<X> {
+import dataStructureInterfaces.BasicQueueInterface;
+
+public class BasicQueue<X> implements BasicQueueInterface<X> {
 	private X[] data;
 	private int front;
 	private int end;
@@ -15,6 +17,7 @@ public class BasicQueue<X> {
 		data = (X[]) new Object[size];
 	}
 	
+	@Override
 	public int size() {
 		if(front == -1 && end == -1) {
 			return 0;
@@ -23,6 +26,7 @@ public class BasicQueue<X> {
 		}
 	}
 	
+	@Override
 	public void enQueue(X item) {
 		//first check if the queue is full
 		if((end + 1) % data.length == front) {
@@ -38,6 +42,7 @@ public class BasicQueue<X> {
 		}
 	}
 	
+	@Override
 	public X deQueue() {
 		X item = null;
 		// if queue is empty we can't dequeue anything
@@ -56,6 +61,7 @@ public class BasicQueue<X> {
 		return item;
 	}
 	
+	@Override
 	public boolean contains(X item) {
 		boolean found = false;
 		
@@ -73,6 +79,7 @@ public class BasicQueue<X> {
 		return found;
 	}
 	
+	@Override
 	public X access(int position) {
 		if(size() == 0 || position > size()) {
 			throw new IllegalArgumentException("No items in queue or position is greater than size.");
