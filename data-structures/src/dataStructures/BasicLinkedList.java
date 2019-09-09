@@ -97,10 +97,11 @@ public class BasicLinkedList<X> {
 
 	// This will remove the first node on the list!
 	public X remove() {
+		X nodeItem = null;
 		if (first == null) {
-			throw new IllegalArgumentException("There is no node to remove.");
+			return nodeItem;
 		}
-		X nodeItem = first.getNodeItem();
+		nodeItem = first.getNodeItem();
 		first = first.getNextNode();
 		
 		nodeCount--;
