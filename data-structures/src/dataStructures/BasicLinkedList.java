@@ -32,6 +32,37 @@ public class BasicLinkedList<X> {
 		return nodeItem;
 	}
 	
+	public X get(int position) {
+		if(first == null) {
+			throw new IllegalStateException("The LinkedList is empty and there are no itmes to get.");
+		}
+		
+		Node currentNode = first;
+		for(int x = 1; x < size() && currentNode != null; x++) {
+			if(x == position) {
+				return currentNode.getNodeItem();
+			}
+			currentNode = currentNode.getNextNode();
+		}
+		
+		return null;
+	}
+	
+	public int find(X item) {
+		if(first == null) {
+			throw new IllegalStateException("The LinkedList is empty and there are no items to find.");
+		}
+		
+		Node currentNode = first;
+		for(int x = 1; x < size() && currentNode != null; x++) {
+			if(currentNode.getNodeItem().equals(item)) {
+				return x;
+			}
+			currentNode = currentNode.getNextNode();
+		}
+		return -1;
+	}
+	
 	public void insert(X item, int position) {
 		if(size() < position) {
 			throw new IllegalStateException("The linked list is smaller than the position you are looking for.");
@@ -103,6 +134,20 @@ public class BasicLinkedList<X> {
 			return nodeItem;
 		}
 
+	}
+	
+	public String toString() {
+		StringBuffer contents = new StringBuffer();
+		Node currNode = first;
+		while(currNode != null) {
+			contents.append(currNode.getNodeItem());
+			currNode = currNode.getNextNode();
+			
+			if(currNode != null) {
+				contents.append(", ");
+			}
+		}
+		return contents.toString();
 	}
 
 }
