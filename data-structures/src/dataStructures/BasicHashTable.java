@@ -63,6 +63,7 @@ public class BasicHashTable<X, Y> {
 			if(entry != null && entry.getValue().equals(value)) {
 				return true;
 			}
+			
 		}
 		return false;
 	}
