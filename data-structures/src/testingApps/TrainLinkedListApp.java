@@ -1,11 +1,16 @@
 package testingApps;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import dataStructures.BasicLinkedList;
 
 public class TrainLinkedListApp {
-	BasicLinkedList<TrainCar> train = new BasicLinkedList<TrainCar>();
-
+//	BasicLinkedList<TrainCar> train = new BasicLinkedList<TrainCar>();
+	List<TrainCar> train = new ArrayList<TrainCar>();
 	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
+		
 		TrainLinkedListApp app = new TrainLinkedListApp();
 		app.buildInitialTrain();
 				
@@ -29,6 +34,9 @@ public class TrainLinkedListApp {
 
 		//print out the train size
 		System.out.println("After Last Stop train size: " + app.trainSize());
+		
+		long end = System.currentTimeMillis();
+		System.out.println("Time: " + (end -start));
 	}
 	
 	private int trainSize() {
@@ -62,7 +70,8 @@ public class TrainLinkedListApp {
 		
 		//test out the find and get
 		//see if we can find the position of the paper box car and then get it
-		int position = train.find(car3);
+//		int position = train.find(car3);
+		int position = train.indexOf(car3);
 		TrainCar paperCar = train.get(position);
 		System.out.println("Train is built correctly. found and retrieved the paper car at position: " + paperCar + " - " + position);
 
@@ -72,26 +81,30 @@ public class TrainLinkedListApp {
 	
 	private void firstStop() {
 		//at this stop we need to pull off the first box car and insert a new BoxCar after the farm machinery
-		TrainCar boxcar = train.remove();
-		
+//		TrainCar boxcar = train.remove();
+		TrainCar boxcar = train.remove(0);
 		System.out.println("First Stop: Removed - " + boxcar);
 		
 		TrainCar newBoxcar = new TrainCar(CarType.BOXCAR, "Farm Fence Posts and Barbwire");
-		train.insert(newBoxcar, 1);
-
+//		train.insert(newBoxcar, 1);
+		train.add(1, newBoxcar);
+		
 		//print out the train cars
 		System.out.println(train);
 	}
 	
 	private void secondStop() {
 		//at this stop we need to pull off all of the tanker cars.  They should start at position 5 and there's 3 of them
-		TrainCar car = train.removeAt(5);
+//		TrainCar car = train.removeAt(5);
+		TrainCar car = train.remove(5);
 		System.out.println("Second Stop: Removed - " + car);
 		
-		car = train.removeAt(5);
+//		car = train.removeAt(5);
+		car = train.remove(5);
 		System.out.println("Second Stop: Removed - " + car);
 		
-		car = train.removeAt(5);
+//		car = train.removeAt(5);
+		car = train.remove(5);
 		System.out.println("Second Stop: Removed - " + car);
 		
 		//print out the train cars
@@ -100,15 +113,17 @@ public class TrainLinkedListApp {
 
 	private void lastStop() {
 		//at this stop we simply pull the remaining cars off of the train until we have no more train.
-		
 		try{
-			while(true) {
-				
-				TrainCar car = train.remove();
+			int count = train.size() - 1;
+			while(true && count > -1) {
+//				TrainCar car = train.remove();
+				TrainCar car = train.remove(count);
+//				System.out.println("Our train car is: " + car);
 				if(car == null) {
 					break;
 				}
 				System.out.println("Last Stop: Removed - " + car);
+				count--;
 				
 			}
 		} catch (IllegalStateException ise) {
