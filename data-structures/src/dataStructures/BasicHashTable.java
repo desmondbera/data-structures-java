@@ -16,17 +16,20 @@ public class BasicHashTable<X, Y> {
 	//This delete implementation can be problematic if we hit the capacity of our hash table
 	public Y delete(X key) {
 		// first get the value for the key and return the removed value
+
 		Y value = get(key);
 		
 		//second, clear out the hash table slot for the key and return the removed value
 		if(value != null) {
+			System.out.println("Deletingggg: " + value);
 			int hash = calculateHash(key);
 			data[hash] = null;
 			size--;
 			hash = (hash + 1) % this.capacity;
-			
-			//if the next slot isn't empty we should re-add it so we can keep the hash algorithms clean
+			System.out.println("Our next hash is: " + data[hash]);
+//			//if the next slot isn't empty we should re-add it so we can keep the hash algorithms clean
 			while(data[hash] != null) {
+				System.out.println("***INSIDE WHILE***");
 				HashEntry he = data[hash];
 				data[hash] = null;
 				put((X)he.getKey(), (Y)he.getValue());
@@ -43,7 +46,7 @@ public class BasicHashTable<X, Y> {
 		int hash = calculateHash(key);
 		
 		//if we don't have anything for the given key, we can just return false
-		if(data[hash] != null) {
+		if(data[hash] == null) {
 			return false;
 		} else {
 			// otherwise get the hashentry for the key and see if it matches the given key
