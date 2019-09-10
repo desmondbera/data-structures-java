@@ -13,3 +13,5 @@ Java Data Structure Implementations
   - Change snow lift code to use the Queue interface
   - Create a new ListQueue using ArrayList as the underlying structure
   - Change the snow lift test code to use the ListQueue
+3. Basic LinkedList Implementation
+4. Basic HashTable Implementation
