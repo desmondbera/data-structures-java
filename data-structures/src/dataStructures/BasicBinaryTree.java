@@ -14,6 +14,68 @@ public class BasicBinaryTree<X extends Comparable<X>> {
 		return size;
 	}
 	
+	public boolean delete(X item) {
+		boolean deleted = false;
+		
+		//make sure the root isn't null - meaning the tree is empty
+		if(this.root == null) {
+			return false;
+		}
+		
+		Node currentNode = getNode(item);
+		
+		if(currentNode != null) {
+			// There are a few cases to deal with in here
+			//1. If the node to delete doesn't have any children, just delete it
+			if(currentNode.getLeft() == null && currentNode.getRight() == null) {
+				unlink(currentNode, null);
+				deleted = true;
+			} else if(currentNode.getLeft() == null && currentNode.getRight() != null) {
+				unlink(currentNode, currentNode.getRight());
+				deleted = true;
+			} else if(currentNode.getLeft() != null && currentNode.getRight() == null) {
+				unlink(currentNode, currentNode.getLeft());
+				deleted = true;
+			} else {
+				// The node has both children, do a awap to delete
+				// this child could also be the right side!
+				Node child = currentNode.getLeft();
+				while(child.getRight() != null && child.getLeft() != null) {
+					// this can be the left side - it depends on which side you want to go down
+					child = child.getRight();
+				}
+				
+				//we have the right most leaf node. We can replace the current node with this node
+				child.getParent().setRight(null); // remove the leaf node from it's current position
+				child.setLeft(currentNode.getLeft());
+				child.setRight(currentNode.getRight());
+				
+				unlink(currentNode, child);
+				deleted = true;
+				
+			}
+		}
+		
+		if(deleted) {
+			this.size--;
+		}
+		
+		return deleted;
+	}
+	
+	private void unlink(Node currentNode, Node newNode) {
+		//if this is the root node, we replace that a little differently
+		if(currentNode == this.root) {
+			newNode.setLeft(currentNode.getLeft());
+			newNode.setRight(currentNode.getRight());
+			this.root = newNode;
+		} else if(currentNode.getParent().getRight() == currentNode) {
+			currentNode.getParent().setRight(newNode);
+		} else {
+			currentNode.getParent().setLeft(newNode);
+		}
+	}
+	
 	public boolean contains(X item) {
 		Node currentNode = getNode(item);
 		if(currentNode == null) {
