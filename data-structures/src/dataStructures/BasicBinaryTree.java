@@ -14,6 +14,35 @@ public class BasicBinaryTree<X extends Comparable<X>> {
 		return size;
 	}
 	
+	public boolean contains(X item) {
+		Node currentNode = getNode(item);
+		if(currentNode == null) {
+			//didnt find it
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	//This can be done recursively - like insert() - but this method will not be recursive
+	private Node getNode(X item) {
+		Node currentNode = this.root;
+		
+		while(currentNode != null) {
+			int val = item.compareTo(currentNode.getItem());
+			//see if the node is a match
+			if(val == 0) {
+				return currentNode;
+			} else if( val < 0) {
+				// if the value is lessn than 0, we go to the left side 
+				currentNode = currentNode.getLeft();
+			} else {
+				currentNode = currentNode.getRight();
+			}
+		}
+		return null;
+	}
+	
 	public void add(X item) {
 		Node node =  new Node(item);
 		
